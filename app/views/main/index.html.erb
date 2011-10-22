@@ -1,2 +1,13 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+<h1>Main</h1>
+<% if user_signed_in? %>
+<% @me = User.find(2)%>
+<% @whitelist = @me.whitelists.find(1) %>
+<% @name = @whitelist.friend %>
+<li>
+<%= @name %>
+<br>
+<%= @whitelist.number %>
+
+<%else%>
+You need to sign in
+<%end%>
