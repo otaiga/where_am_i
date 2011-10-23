@@ -1,13 +1,19 @@
 <h1>Main</h1>
 <% if user_signed_in? %>
-<% @me = User.find(2)%>
-<% @whitelist = @me.whitelists.find(1) %>
-<% @name = @whitelist.friend %>
-<li>
-<%= @name %>
-<br>
-<%= @whitelist.number %>
+<% if @whitelist == nil %>
+you need to create a friend
+<% else %>
+<% @whitelist.each do |white| %>
+	<ul>
+		<li><%= white.friend %> - <%= white.number %>,<%= link_to('edit Whitelist', edit_whitelist_path(white)) %> <%= link_to "Destroy", whites, :confirm => 'Are you sure?', :method => :delete %></li>
+	</ul>
+<% end %>
+<% end %>
 
+
+
+
+  end
 <%else%>
 You need to sign in
 <%end%>

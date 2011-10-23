@@ -1,0 +1,20 @@
+<% @whitelist.each do |white| %>
+<h1> Friends List</h1>
+	<ul>
+		<li><%= white.friend %> - <%= white.number %>, <%= link_to('edit friend', whitelist_edit_path(white.id)) %> </li>
+	
+	</ul>
+<br>
+<br>
+<h2>Create a friend</h2>
+<%= form_tag do %>
+Friend
+<br>	
+  <%= text_field_tag("friend") %><br>
+  Number <br>
+  <%= text_field_tag("number") %><br>
+  <br>
+  <%= submit_tag("create")  %>
+
+<% end %>
+<% end %>

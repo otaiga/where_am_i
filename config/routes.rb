@@ -1,5 +1,16 @@
 WhereAmI::Application.routes.draw do
+  get "whitelist/create"
+
+  get "whitelist/destroy"
+
+  get "whitelist/edit"
+
   get "main/index"
+
+  match 'whitelist/create', :to => 'whitelist#create'
+  match 'whitelist/index', :to => 'whitelist#index'
+  match 'whitelist/edit', :to => 'whitelist#edit'
+  match 'whitelist', :to => 'whitelist#index'
 
   devise_for :users
 
