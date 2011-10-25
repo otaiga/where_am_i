@@ -2,17 +2,15 @@ class WhitelistController < ApplicationController
 	def index
 		@whitelist = Whitelist.all
 	end
+
   def create
-    puts "hello create!!!!"
-  	@whitelist = Whitelist.new(params[:whitelist])
-	  if @whitelist.save
-      redirect_to('/', :notice => "We will get back to you as soon as possible...")
-    else
-      redirect_to('/', :alert => "Hey, sorry but something went wrong")
-    end
+  	@whitelist = Whitelist.create(friend: params[:friend], number: params[:number], user_id: params[:user_id])
+      redirect_to '/'
   end
 
   def destroy
+    @whitelist = Whitelist.destroy(params[:format])
+    redirect_to '/'
   end
 
   def edit
@@ -20,4 +18,7 @@ class WhitelistController < ApplicationController
 
   end
 
+  def modify
+    # @whitelist = Whitelist.update_attributes
+  end
 end

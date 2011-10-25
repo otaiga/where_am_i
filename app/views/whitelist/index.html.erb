@@ -7,14 +7,10 @@
 <br>
 <br>
 <h2>Create a friend</h2>
-<%= form_tag do %>
-Friend
-<br>	
-  <%= text_field_tag("friend") %><br>
-  Number <br>
-  <%= text_field_tag("number") %><br>
-  <br>
-  <%= submit_tag("create")  %>
+<%= form_tag("/search", :method => "POST") do %>
+  <%= text_field_tag("friend") %>
+  <%= text_field_tag("number") %>
+  <%= submit_tag("create")%>
 
 <% end %>
 <% end %>

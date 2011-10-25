@@ -1,19 +1,29 @@
-<h1>Main</h1>
+<h1>Where Am I Hashblue?</h1>
 <% if user_signed_in? %>
-<% if @whitelist == nil %>
-you need to create a friend
+<% if @whitelist == [] %>
+You currently have not listed any friends
 <% else %>
+<h2> Your Current Friend List</h2>
 <% @whitelist.each do |white| %>
-	<ul>
-		<li><%= white.friend %> - <%= white.number %>,<%= link_to('edit Whitelist', edit_whitelist_path(white)) %> <%= link_to "Destroy", whites, :confirm => 'Are you sure?', :method => :delete %></li>
+<ul>
+		<li><%= white.friend %> - <%= white.number %>, <%= link_to('edit friend', whitelist_edit_path(white.id)) %>, <%= link_to('delete friend', whitelist_destroy_path(white.id))%> </li>
+	
 	</ul>
+
+
 <% end %>
 <% end %>
+<h2>Create a friend</h2>
 
+<%= form_tag("/whitelist/create", :method => "POST") do %>
+  Friend<br>
+  <%= text_field_tag("friend") %><br>
+  Number<br>
+  <%= text_field_tag("number") %><br><br>
+  <%= hidden_field :user_id, :value => current_user.id %>
+  <%= submit_tag("create")%>
+  <% end %>
 
-
-
-  end
 <%else%>
 You need to sign in
 <%end%>
