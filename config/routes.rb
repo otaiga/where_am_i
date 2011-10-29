@@ -13,6 +13,9 @@ WhereAmI::Application.routes.draw do
   match 'whitelist/edit', :to => 'whitelist#edit'
   match 'whitelist', :to => 'whitelist#index'
 
+
+  match 'hashblue/index', :to => "hashblue#index"
+
   devise_for :users
 
   # The priority is based upon order of creation:
