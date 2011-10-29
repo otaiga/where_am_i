@@ -1,4 +1,20 @@
 WhereAmI::Application.routes.draw do
+  get "whitelist/create"
+
+  get "whitelist/destroy"
+
+  get "whitelist/edit"
+
+  get "main/index"
+
+  match 'whitelist/modify', :to => 'whitelist#modify'
+  match 'whitelist/create', :to => 'whitelist#create'
+  match 'whitelist/index', :to => 'whitelist#index'
+  match 'whitelist/edit', :to => 'whitelist#edit'
+  match 'whitelist', :to => 'whitelist#index'
+
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +64,7 @@ WhereAmI::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'main#index'
 
   # See how all your routes lay out with "rake routes"
 

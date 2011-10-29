@@ -1,0 +1,11 @@
+
+<%= form_for @whitelist, :as => :post, :url => whitelist_modify_path do |f| %>
+	<%= f.label :friend  %>
+  <%= f.text_field :friend %>
+	<%= f.label :number %>
+  <%= f.text_field :number %>
+ <%= f.hidden_field :user_id, :value => current_user.id %>
+ <%= f.hidden_field :id %>
+  <%= f.submit :Submit %>
+  
+<% end %>

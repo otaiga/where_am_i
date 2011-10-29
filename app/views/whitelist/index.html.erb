@@ -1,0 +1,16 @@
+<% @whitelist.each do |white| %>
+<h1> Friends List</h1>
+	<ul>
+		<li><%= white.friend %> - <%= white.number %>, <%= link_to('edit friend', whitelist_edit_path(white.id)) %> </li>
+	
+	</ul>
+<br>
+<br>
+<h2>Create a friend</h2>
+<%= form_tag("/search", :method => "POST") do %>
+  <%= text_field_tag("friend") %>
+  <%= text_field_tag("number") %>
+  <%= submit_tag("create")%>
+
+<% end %>
+<% end %>
