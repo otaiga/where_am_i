@@ -19,6 +19,9 @@ class WhitelistController < ApplicationController
   end
 
   def modify
-    # @whitelist = Whitelist.update_attributes
+      a = params[:post][:id]
+      mod = Whitelist.find(a)
+      mod.update_attributes(:friend => params[:post][:friend], :number => params[:post][:number])
+      redirect_to '/'
   end
 end

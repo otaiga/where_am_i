@@ -7,6 +7,7 @@ WhereAmI::Application.routes.draw do
 
   get "main/index"
 
+  match 'whitelist/modify', :to => 'whitelist#modify'
   match 'whitelist/create', :to => 'whitelist#create'
   match 'whitelist/index', :to => 'whitelist#index'
   match 'whitelist/edit', :to => 'whitelist#edit'
