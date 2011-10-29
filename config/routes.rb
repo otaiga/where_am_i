@@ -14,7 +14,7 @@ WhereAmI::Application.routes.draw do
   match 'whitelist', :to => 'whitelist#index'
 
 
-  match 'hashblue/index', :to => "hashblue#index"
+  match 'hashblue/', :to => "hashblue#index"
 
   devise_for :users
 
