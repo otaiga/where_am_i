@@ -23,7 +23,8 @@ You currently have not listed any friends
   <%= hidden_field :user_id, :value => current_user.id %>
   <%= submit_tag("create")%>
   <% end %>
-
+<br>
+<%= link_to 'hashblue', hashblue_path %>
 <%else%>
 You need to sign in
 <%end%>

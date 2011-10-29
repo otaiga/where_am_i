@@ -15,6 +15,7 @@ WhereAmI::Application.routes.draw do
 
 
   match 'hashblue/', :to => "hashblue#index"
+  match '/callback', :to => "hashblue#callback"
 
   devise_for :users
 
