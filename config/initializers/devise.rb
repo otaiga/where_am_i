@@ -4,7 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
+  config.mailer_sender = "richlewis14@gmail.com"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -78,6 +78,19 @@ Devise.setup do |config|
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming his account.
   # config.confirm_within = 2.days
+ActionMailer::Base.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => "gmail.com",
+  :user_name            => "richlewis14@gmail.com",
+  :password             => "caerleon1",
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
+
+ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+
+
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [ :email ]
