@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   def index
-  	@whitelist = Whitelist.all
+  	@user = User.find(current_user.id)
+  	@whitelist = @user.whitelists.all
 end
 end
