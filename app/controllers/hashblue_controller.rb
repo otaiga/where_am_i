@@ -5,8 +5,6 @@ require 'json'
 
  # CLIENT_ID = ENV['CLIENT_ID']
  # CLIENT_SECRET = ENV['CLIENT_SECRET']
-CLIENT_ID = "ccUDbmb9LKzS9gn2"
-CLIENT_SECRET = "aBy9s0hrwRMsXEeCvnn1WAAWhdv0pFDH"
 
  AUTH_SERVER = "https://hashblue.com"
  API_SERVER = "https://api.hashblue.com"
