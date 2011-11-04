@@ -3,10 +3,23 @@
 <% else %>
 You are not currently signed in
 <% end %>
+<html>
+<body>
 
+<table width="100%" border="1">
+<tr>
+<td colspan="2" style="background-color:#888888;">
+<h1>Where Am I</h1>
+</td>
+</tr>
 
-<h2>Sign in</h2>
-
+<tr valign="top">
+<td style="background-color:#888888;width:100px;text-align:top;">
+<b>Menu</b><br />
+About<br />
+Contact<br />
+</td>
+<td style="background-color:#888888;height:450px;width:400px;text-align:top;">
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
@@ -21,4 +34,15 @@ You are not currently signed in
   <div><%= f.submit "Sign in" %></div>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+<%= render :partial => "devise/shared/links" %></td>
+</tr>
+
+<tr>
+<td colspan="2" style="background-color:#888888;text-align:center;">
+Rich and Karl Apps</td>
+</tr>
+</table>
+
+</body>
+</html> 
+
