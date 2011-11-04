@@ -79,7 +79,7 @@ if session[:access_token]
       
         session[:access_token] = response["access_token"]
         # $access_token = response["access_token"]
-        redirect_to '/'
+        redirect_to hashblue_path
 
      end
 
