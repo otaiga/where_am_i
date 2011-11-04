@@ -4,8 +4,8 @@ class WhitelistController < ApplicationController
 	end
 
   def create
-  	@whitelist = Whitelist.create(friend: params[:friend], number: params[:number], user_id: params[:user_id])
-      redirect_to '/'
+  	@whitelist = Whitelist.create(friend: params[:friend], number: params[:number], user_id: current_user.id)
+    redirect_to '/'
   end
 
   def destroy
