@@ -1,4 +1,6 @@
 WhereAmI::Application.routes.draw do
+  devise_for :users
+
   get "whitelist/create"
 
   get "whitelist/destroy"
@@ -12,8 +14,6 @@ WhereAmI::Application.routes.draw do
   match 'whitelist/index', :to => 'whitelist#index'
   match 'whitelist/edit', :to => 'whitelist#edit'
   match 'whitelist', :to => 'whitelist#index'
-
-  devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
