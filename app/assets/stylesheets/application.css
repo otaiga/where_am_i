@@ -5,3 +5,30 @@
  *= require_self
  *= require_tree . 
 */
+
+div.notice {
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+width: 40%;
+border: 5px solid #ccc;
+margin-top: 100px;
+padding: 20px;
+font-weight: bold;
+}
+
+div.test {
+width: 40%;
+border: 5px solid #ccc;
+margin-top: 100px;
+padding: 20px;
+color:orange;
+font-weight: bold
+}
+
+
+#para1
+{
+text-align:center;
+color:red;
+} 

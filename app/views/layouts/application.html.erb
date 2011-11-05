@@ -1,16 +1,21 @@
 <!DOCTYPE html>
+
 <html>
 <head>
   <title>WhereAmI</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+<%= content_tag(:div, flash[:error], :class => "notice", :id => "flash_error") if flash[:error] %>
+<%= content_tag(:div, flash[:notice], :class => "notice", :id => "flash_notice") if flash[:notice] %>
+<%= content_tag(:div, flash[:alert], :class => "notice", :id => "flash_alert") if flash[:alert] %>
 </head>
 <body>
 <% if user_signed_in? %>
   <li>
   <%= link_to('Home', main_index_path) %>     
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>   
   </li>
   <% else %>
   <li>
