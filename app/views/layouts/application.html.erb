@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
   <title>WhereAmI</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
@@ -11,10 +11,6 @@
   <li>
   <%= link_to('Home', main_index_path) %>     
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-  </li>
-  <% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>  
   </li>
 <% end %>
 
