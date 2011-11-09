@@ -24,6 +24,7 @@ WhereAmI::Application.routes.draw do
 
 
   match 'hashblue/', :to => "hashblue#index"
+  match 'hashblue/run', :to => "hashblue#run"
   match '/callback', :to => "hashblue#callback"
   match 'users/contact', :to => "pages#contact"
   match 'users/index', :to => "main#index"

@@ -75,19 +75,22 @@ puts "key =" + CONSUMER_KEY
      @service = @bc.get_service(:Location)
      location = @service.get_location
    
-     latlong = location['terminalLocation']['currentLocation']['coordinates']
+     if latlong = location['terminalLocation']['currentLocation']['coordinates']
    
      @lat = latlong['latitude']
      @lon = latlong['longitude']
-     
-     
+     @contact = session[:contact]
+     puts "this is the contact #{@contact}"
      puts @lat
      puts @lon
      
      session[:lat] = @lat
      session[:lon] = @lon
      
-     redirect_to root_path 
+    redirect_to root_path 
+   else 
+    redirect_to root_path 
+  end
    end
 
 

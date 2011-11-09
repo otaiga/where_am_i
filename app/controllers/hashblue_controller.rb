@@ -42,11 +42,14 @@ if session[:access_token]
           @messages = @messages_response["messages"]
           
           puts @messages
-             @messages.reverse.each {|message| if message["content"].last(10) == "Where r u?" 
+             @messages.reverse.each {|message| 
+               if message["content"].last(10) == "Where r u?" 
                @contact = message["contact"]["msisdn"]
                @timestamp = message["timestamp"]
+               return
              else
               @contact ="No location requests as of yet"
+              @timestamp = ""
      
          end
          }
@@ -78,10 +81,54 @@ if session[:access_token]
       
         session[:access_token] = response["access_token"]
         # $access_token = response["access_token"]
-        redirect_to bluevia_auth_path
+        redirect_to root_path
 
      end
 
+
+def run
+if user_signed_in?
+if session[:access_token]
+        # authorized so request the messages from #blue)
+        @messages_response = get_with_access_token("/messages.json")
+
+        case @messages_response.code
+                   when 200
+          @messages = @messages_response["messages"]
+          
+          puts @messages
+             @messages.reverse.each {|message| 
+               if message["content"].last(10) == "Where r u?" 
+               @contact = message["contact"]["msisdn"]
+               @timestamp = message["timestamp"]
+               session[:contact] = @contact
+               bluevia
+               return
+             else
+              @contact ="No location requests as of yet"
+              @timestamp = ""
+     
+         end
+         }
+                             
+        when 401
+         redirect_to AUTH_SERVER + "/oauth/authorize?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&redirect_uri=http://" + request.host_with_port + "/callback"
+        else
+          "Got an error from the server (#{@messages_response.code.inspect}): #{CGI.escapeHTML(@messages_response.inspect)}"
+        end
+      else
+        # No Access token therefore authorize this application and request an access token
+        redirect_to "https://hashblue.com/oauth/authorize?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&redirect_uri=http://" + request.host_with_port + "/callback"
+        puts "ERROR TOKEN #{CLIENT_SECRET}"
+       end
+    end
+
+
+end
+
+def bluevia
+  redirect_to bluevia_calllocation_path
+end
 
 
 
