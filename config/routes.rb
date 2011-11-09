@@ -1,4 +1,8 @@
 WhereAmI::Application.routes.draw do
+  get "pages/about_us"
+
+  get "pages/contact"
+
   devise_for :users
 
   get "whitelist/create"
@@ -16,8 +20,13 @@ WhereAmI::Application.routes.draw do
   match 'whitelist', :to => 'whitelist#index'
 
 
+
   match 'hashblue/', :to => "hashblue#index"
   match '/callback', :to => "hashblue#callback"
+  match 'users/contact', :to => "pages#contact"
+  match 'users/index', :to => "main#index"
+  match 'users/about_us', :to => "pages#about_us"
+
 
   devise_for :users
 

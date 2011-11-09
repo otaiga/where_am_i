@@ -42,10 +42,11 @@ if session[:access_token]
           @messages = @messages_response["messages"]
           
           puts @messages
-
-
              @messages.reverse.each {|message| if message["content"].last(10) == "Where r u?" 
                @contact = message["contact"]["msisdn"]
+               @timestamp = message["timestamp"]
+             else
+              @contact ="No location requests as of yet"
      
          end
          }
