@@ -9,7 +9,7 @@ gem 'sqlite3'
 gem 'devise'
 gem 'httparty'
 gem 'json'
-
+gem 'bluevia'
 
 # Gems used only for assets and not required
 # in production environments by default.

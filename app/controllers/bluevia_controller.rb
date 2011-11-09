@@ -3,6 +3,8 @@ class BlueviaController < ApplicationController
  CONSUMER_KEY = ENV['BLUEVIA_KEY']
  CONSUMER_SECRET = ENV['BLUEVIA_SECRET']
 
+require 'bluevia'
+include Bluevia
 
   def auth
 puts "key =" + CONSUMER_KEY
