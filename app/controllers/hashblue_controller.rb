@@ -78,7 +78,7 @@ if session[:access_token]
       
         session[:access_token] = response["access_token"]
         # $access_token = response["access_token"]
-        redirect_to hashblue_path
+        redirect_to bluevia_auth_path
 
      end
 

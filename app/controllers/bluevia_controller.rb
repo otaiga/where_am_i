@@ -4,7 +4,13 @@ class BlueviaController < ApplicationController
  CONSUMER_SECRET = ENV['BLUEVIA_SECRET']
 
 require 'bluevia'
+require 'open-uri'
+require 'json'
+require 'httparty'
 include Bluevia
+
+
+
 
   def auth
 puts "key =" + CONSUMER_KEY
@@ -24,7 +30,8 @@ puts "key =" + CONSUMER_KEY
       puts "Secrect =" +secret
       puts "url = " + url
           
-      response.set_cookie(:token, "#{token}|#{secret}")
+       $request_token = token
+       $request_secret = secret
       
       redirect_to url 
   end
@@ -32,7 +39,6 @@ puts "key =" + CONSUMER_KEY
 
     def callbackblue
     oauth_verifier = params[:oauth_verifier]
-      get_token_from_cookie
 
       @bc = BlueviaClient.new(
                { :consumer_key   => CONSUMER_KEY,
@@ -42,12 +48,15 @@ puts "key =" + CONSUMER_KEY
        @bc.set_commercial
 
       @service = @bc.get_service(:oAuth)
-      @token, @token_secret = @service.get_access_token(@request_token, @request_secret, oauth_verifier)
+      @token, @token_secret = @service.get_access_token($request_token, $request_secret, oauth_verifier)
       
       session[:token] = @token
-       session[:token_secret] = @token_secret
+      session[:token_secret] = @token_secret
+
+      puts session[:token]
+      puts session[:token_secret]
       
-      redirect_to  'bluevia/calllocation'
+      redirect_to  bluevia_calllocation_path
     end
 
 
@@ -80,19 +89,6 @@ puts "key =" + CONSUMER_KEY
      
      redirect_to root_path 
    end
-
-
-      def get_token_from_cookie
-
-      cookie_token = request.cookies['token']
-      cookie_token = cookie_token.split("|")
-      if cookie_token.size != 2
-           raise SyntaxError, "The cookie is not valid"
-         end     
-       @request_token = cookie_token[0]
-       @request_secret = cookie_token[1]
-
-    end
 
 
 end
