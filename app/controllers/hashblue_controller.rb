@@ -3,8 +3,8 @@ class HashblueController < ApplicationController
 require 'httparty'
 require 'json'
 
- # CLIENT_ID = ENV['CLIENT_ID']
- # CLIENT_SECRET = ENV['CLIENT_SECRET']
+  CLIENT_ID = ENV['CLIENT_ID']
+  CLIENT_SECRET = ENV['CLIENT_SECRET']
 
  AUTH_SERVER = "https://hashblue.com"
  API_SERVER = "https://api.hashblue.com"
@@ -42,10 +42,11 @@ if session[:access_token]
           @messages = @messages_response["messages"]
           
           puts @messages
-
-
              @messages.reverse.each {|message| if message["content"].last(10) == "Where r u?" 
                @contact = message["contact"]["msisdn"]
+               @timestamp = message["timestamp"]
+             else
+              @contact ="No location requests as of yet"
      
          end
          }

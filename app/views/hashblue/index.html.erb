@@ -1,6 +1,8 @@
 <% if user_signed_in? %>
-<h1>Register with Hashblue</h1>
-<p>Authentication from hashblue completed</p>
+<h1>Authentication from hashblue completed</h1>
+<br>
+<p>Here is the number of the last location request:</p>
+<%= @contact %> : <%= @timestamp%>
 
 <% else %>
 <p> You must be signed in to perform this.</p>
