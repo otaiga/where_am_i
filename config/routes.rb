@@ -1,4 +1,6 @@
 WhereAmI::Application.routes.draw do
+  get "bluevia/auth"
+
   get "pages/about_us"
 
   get "pages/contact"
@@ -27,7 +29,8 @@ WhereAmI::Application.routes.draw do
   match 'users/index', :to => "main#index"
   match 'users/about_us', :to => "pages#about_us"
 
-
+  match 'bluevia/callbackblue', :to => "bluevia#callbackblue"
+  match 'bluevia/calllocation', :to => "bluevia#calllocation"
   devise_for :users
 
   # The priority is based upon order of creation:
