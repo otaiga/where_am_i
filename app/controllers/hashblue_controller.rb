@@ -158,7 +158,7 @@ def send_message
   puts "END"
   path = "/messages"
   HTTParty.post(API_SERVER + path, :query => {:oauth_token => access_token, :message => {:phone_number => @contact , :content => @location }})
-  redirect_to root_path
+  redirect_to  hashblue_run_path
 end
 
 
