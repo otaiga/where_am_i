@@ -153,7 +153,11 @@ def send_message
   puts "should send the message from here"
   puts "around here somewhere #{session[:location]}"
   puts "#{session[:contact]}"
+  @contact = session[:contact]
+  @location = session[:location]
   puts "END"
+  path = "/messages"
+  HTTParty.post(API_SERVER + path, :query => {:oauth_token => access_token, :message => {:phone_number => @contact , :content => @location }})
   redirect_to root_path
 end
 
