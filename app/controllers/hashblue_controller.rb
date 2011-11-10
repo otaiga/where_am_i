@@ -17,9 +17,11 @@ require 'json'
     def get_with_access_token(path)
 
       puts "!!!!!!!!!!!!!!!!!!!!!!this is the timestamp = #{$timestamp}"
-      if $timestamp == nil||"" 
+      if $timestamp == nil
          $timestamp ="2011-09-29T23:00Z"
+         
       end
+      puts "THIS IS THE NEW TIMESTAMP!!!  = #{$timestamp}"
         HTTParty.get(API_SERVER + path, :query => {:oauth_token => access_token, :since => $timestamp })
     end
 
@@ -100,8 +102,9 @@ if session[:access_token]
                    when 200
           @messages = @messages_response["messages"]
           
-           puts @messages
+          unless @messages == []
              @messages.each {|message| 
+              puts message
                if message["content"].last(10) == "Where r u?" 
                @contact = message["contact"]["msisdn"]
                @timestamp = message["timestamp"]
@@ -112,11 +115,17 @@ if session[:access_token]
                return
              else
               @contact ="No location requests as of"
-              redirect_to main_index_path
-              return
-     
+              @timestamp = $timestamp
+              puts "No location requests as of #{$timestamp}"
+              # redirect_to main_index_path
+              # return
          end
          }
+       else 
+        puts "no new messages"
+        @contact ="No location requests as of"
+        @timestamp = $timestamp
+      end
                              
         when 401
          redirect_to AUTH_SERVER + "/oauth/authorize?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&redirect_uri=http://" + request.host_with_port + "/callback"

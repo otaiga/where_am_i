@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+<h1>Update</h1>
+<br>
+<p>Here is the number of the last location request:</p>
+<%= @contact %> : <%= @timestamp%>
+
+<% else %>
+<p> You must be signed in to perform this.</p>
+<% end %>
