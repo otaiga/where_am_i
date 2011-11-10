@@ -11,6 +11,18 @@ include Bluevia
 
 
 
+def geonames
+       #Geo-names bit
+
+           places_nearby = Geonames::WebService.find_nearby_place_name @lat, @lon
+            
+            @here = places_nearby.first.name
+            @here2 = places_nearby.first.country_name
+            puts @here
+            session[:location] = @here
+            return
+  end
+
 
   def auth
 puts "key =" + CONSUMER_KEY
@@ -88,8 +100,13 @@ puts "key =" + CONSUMER_KEY
      
      session[:lat] = @lat
      session[:lon] = @lon
-     
-    redirect_to root_path 
+
+     geonames
+
+     puts "bluevia DONE!"
+     puts "#{session[:location]}"
+
+    redirect_to hasblue_send_message_path
    else 
     redirect_to root_path 
   end

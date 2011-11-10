@@ -10,6 +10,7 @@ gem 'devise'
 gem 'httparty'
 gem 'json'
 gem 'bluevia'
+gem 'geonames'
 
 # Gems used only for assets and not required
 # in production environments by default.

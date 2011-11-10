@@ -53,6 +53,7 @@ GEM
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    geonames (0.2.2)
     hike (1.2.1)
     httparty (0.8.1)
       multi_json
@@ -136,6 +137,7 @@ DEPENDENCIES
   bluevia
   coffee-rails (~> 3.1.1)
   devise
+  geonames
   httparty
   jquery-rails
   json

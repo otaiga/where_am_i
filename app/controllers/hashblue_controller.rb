@@ -149,5 +149,14 @@ def bluevia
 end
 
 
+def send_message
+  puts "should send the message from here"
+  puts "around here somewhere #{session[:location]}"
+  puts "#{session[:contact]}"
+  puts "END"
+  redirect_to root_path
+end
+
+
 
 end
