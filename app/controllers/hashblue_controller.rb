@@ -96,6 +96,7 @@ def run
 if user_signed_in?
 if session[:access_token]
         # authorized so request the messages from #blue)
+       loop do
         @messages_response = get_with_access_token("/messages.json")
 
         case @messages_response.code
@@ -132,15 +133,16 @@ if session[:access_token]
         else
           "Got an error from the server (#{@messages_response.code.inspect}): #{CGI.escapeHTML(@messages_response.inspect)}"
         end
+        sleep 5
+      end
       else
         # No Access token therefore authorize this application and request an access token
         redirect_to "https://hashblue.com/oauth/authorize?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&redirect_uri=http://" + request.host_with_port + "/callback"
         puts "ERROR TOKEN #{CLIENT_SECRET}"
        end
     end
-
-
 end
+
 
 def bluevia
   redirect_to bluevia_calllocation_path
