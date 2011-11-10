@@ -80,7 +80,9 @@ puts "key =" + CONSUMER_KEY
      @lat = latlong['latitude']
      @lon = latlong['longitude']
      @contact = session[:contact]
+     @timestamp = session[:timestamp]
      puts "this is the contact #{@contact}"
+     puts "this is the timestamp #{@timestamp}"
      puts @lat
      puts @lon
      

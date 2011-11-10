@@ -15,7 +15,12 @@ require 'json'
     end
 
     def get_with_access_token(path)
-        HTTParty.get(API_SERVER + path, :query => {:oauth_token => access_token, :since => "2011-09-29T23:00Z" })
+
+      puts "!!!!!!!!!!!!!!!!!!!!!!this is the timestamp = #{$timestamp}"
+      if $timestamp == nil||"" 
+         $timestamp ="2011-09-29T23:00Z"
+      end
+        HTTParty.get(API_SERVER + path, :query => {:oauth_token => access_token, :since => $timestamp })
     end
 
     def access_token
@@ -41,8 +46,7 @@ if session[:access_token]
                    when 200
           @messages = @messages_response["messages"]
           
-          puts @messages
-             @messages.reverse.each {|message| 
+             @messages.each {|message| 
                if message["content"].last(10) == "Where r u?" 
                @contact = message["contact"]["msisdn"]
                @timestamp = message["timestamp"]
@@ -96,17 +100,20 @@ if session[:access_token]
                    when 200
           @messages = @messages_response["messages"]
           
-          puts @messages
-             @messages.reverse.each {|message| 
+           puts @messages
+             @messages.each {|message| 
                if message["content"].last(10) == "Where r u?" 
                @contact = message["contact"]["msisdn"]
                @timestamp = message["timestamp"]
+               $timestamp = @timestamp
                session[:contact] = @contact
+               session[:timestamp] = @timestamp
                bluevia
                return
              else
-              @contact ="No location requests as of yet"
-              @timestamp = ""
+              @contact ="No location requests as of"
+              redirect_to main_index_path
+              return
      
          end
          }
