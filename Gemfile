@@ -11,6 +11,7 @@ gem 'httparty'
 gem 'json'
 gem 'bluevia'
 gem 'geonames'
+gem 'starling'
 
 # Gems used only for assets and not required
 # in production environments by default.
