@@ -2,12 +2,15 @@ class HashblueController < ApplicationController
 
 require 'httparty'
 require 'json'
+require 'test_job'
 
   CLIENT_ID = ENV['CLIENT_ID']
   CLIENT_SECRET = ENV['CLIENT_SECRET']
 
  AUTH_SERVER = "https://hashblue.com"
  API_SERVER = "https://api.hashblue.com"
+
+
 
 
     def redirect_uri
@@ -91,6 +94,11 @@ if session[:access_token]
         redirect_to root_path
 
      end
+
+def background
+ Delayed::Job.enqueue TestJob.new
+ redirect_to root_path
+end
 
 
 def run
