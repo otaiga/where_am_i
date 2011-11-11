@@ -50,6 +50,7 @@ if session[:access_token]
           
              @messages.each {|message| 
                if message["content"].last(10) == "Where r u?" 
+
                @contact = message["contact"]["msisdn"]
                @timestamp = message["timestamp"]
                return
@@ -106,7 +107,13 @@ if session[:access_token]
           unless @messages == []
              @messages.each {|message| 
               puts message
+              @user = User.find(current_user.id)
+               whitelist = @user.whitelists.all
+
                if message["content"].last(10) == "Where r u?" 
+               whitelist.each { |whitelist| 
+                puts whitelist.number
+                 if message["contact"]["msisdn"] == whitelist.number 
                @contact = message["contact"]["msisdn"]
                @timestamp = message["timestamp"]
                $timestamp = @timestamp
@@ -115,11 +122,13 @@ if session[:access_token]
                bluevia
                return
              else
+              puts "#{message["contact"]["msisdn"]} Does not match #{whitelist.number}"
+            end
+          }
+          else
               @contact ="No location requests as of"
               @timestamp = $timestamp
               puts "No location requests as of #{$timestamp}"
-              # redirect_to main_index_path
-              # return
          end
          }
        else 
@@ -133,7 +142,7 @@ if session[:access_token]
         else
           "Got an error from the server (#{@messages_response.code.inspect}): #{CGI.escapeHTML(@messages_response.inspect)}"
         end
-        sleep 5
+        sleep 1
       end
       else
         # No Access token therefore authorize this application and request an access token
