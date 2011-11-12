@@ -97,7 +97,6 @@ if session[:access_token]
 
 def background
  Delayed::Job.enqueue TestJob.new
- redirect_to root_path
 end
 
 
