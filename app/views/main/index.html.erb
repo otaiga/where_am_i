@@ -22,14 +22,36 @@ You currently have not listed any friends
   <%= text_field_tag("number") %><br><br>
   <%= submit_tag("create")%>
   <% end %>
+
+
+ <%mod = @user.auths.first%>
+<%if mod.hb_token == nil%>
+<br>
+Please Authenticate with hashblue:
 <br>
 <%= link_to 'hashblue authentication', hashblue_path %>
+<%end%>
+<%if mod.bluevia_token == nil%>
 <br>
+<br>
+Please Authenticate with BlueVia
 <br>
 <%= link_to 'bluevia authentication', bluevia_auth_path %>
+<%end%>
+
+<%if mod.bluevia_token != nil && mod.hb_token != nil %>
+<%mod = @user.auths.first%>
+<%if mod.run_flag == false %>
 <br>
 <br>
-<%= link_to 'Test run', hashblue_run_path %>
+<%= link_to 'Turn on', main_loop_on_path %>
+<%else%>
+<br>
+<br>
+<%= link_to 'Turn off', main_loop_off_path %>
+<%end%>
+<%end%>
+<!-- # <%= link_to 'Test run', hashblue_run_path %> -->
 <%else%>
 You need to sign in
 <%end%>

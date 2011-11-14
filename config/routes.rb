@@ -22,7 +22,8 @@ WhereAmI::Application.routes.draw do
   match 'whitelist', :to => 'whitelist#index'
 
 
-
+  match 'main/loop_on', :to => "main#loop_on"
+  match 'main/loop_off', :to => "main#loop_off"
   match 'hashblue/', :to => "hashblue#index"
   match 'hashblue/run', :to => "hashblue#run"
   match 'hasblue/send_message', :to => "hashblue#send_message"

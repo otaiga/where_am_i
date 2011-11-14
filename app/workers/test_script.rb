@@ -31,7 +31,7 @@ def geonames
 
       puts "!!!!!!!!!!!!!!!!!!!!!!this is the timestamp = #{$timestamp}"
       if $timestamp == nil
-         $timestamp ="2011-09-29T23:00Z"
+         $timestamp = Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
          end
          HTTParty.get(API_SERVER + path, :query => {:oauth_token => $access_token, :since => $timestamp })
       end
@@ -135,19 +135,20 @@ loop do
 
              else
               puts "#{message["contact"]["msisdn"]} Does not match #{whitelist.number}"
+              $timestamp = nil
             end
           }
 
                  else
               @contact ="No location requests as of"
-              @timestamp = $timestamp
+              $timestamp = @timestamp
               puts "No location requests as of #{$timestamp}"
+              $timestamp = @timestamp
          end
          }
        else 
         puts "no new messages"
         @contact ="No location requests as of"
-        @timestamp = $timestamp
       end
 
 		else
