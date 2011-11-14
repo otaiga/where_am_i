@@ -94,11 +94,6 @@ if session[:access_token]
 
      end
 
-def background
-  @contact = "FUCK THIS SHIT!!"
-end
-
-
 
 def run
 if user_signed_in?

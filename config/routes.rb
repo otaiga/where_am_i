@@ -27,7 +27,6 @@ WhereAmI::Application.routes.draw do
   match 'hashblue/run', :to => "hashblue#run"
   match 'hasblue/send_message', :to => "hashblue#send_message"
   match '/callback', :to => "hashblue#callback"
-  match 'hashblue/background', :to => "hashblue#background"
   match 'users/contact', :to => "pages#contact"
   match 'users/index', :to => "main#index"
   match 'users/about_us', :to => "pages#about_us"
