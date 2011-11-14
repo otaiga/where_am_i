@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  hb_token: MyString
+  bluevia_token: MyString
+  bluevia_secret: MyString
+  run_flag: false
+
+two:
+  hb_token: MyString
+  bluevia_token: MyString
+  bluevia_secret: MyString
+  run_flag: false

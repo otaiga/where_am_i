@@ -2,8 +2,6 @@ class HashblueController < ApplicationController
 
 require 'httparty'
 require 'json'
-require 'test_job'
-
   CLIENT_ID = ENV['CLIENT_ID']
   CLIENT_SECRET = ENV['CLIENT_SECRET']
 
@@ -25,6 +23,7 @@ require 'test_job'
          
       end
       puts "THIS IS THE NEW TIMESTAMP!!!  = #{$timestamp}"
+      puts access_token
         HTTParty.get(API_SERVER + path, :query => {:oauth_token => access_token, :since => $timestamp })
     end
 
@@ -96,15 +95,16 @@ if session[:access_token]
      end
 
 def background
- Delayed::Job.enqueue TestJob.new
+  @contact = "FUCK THIS SHIT!!"
 end
+
 
 
 def run
 if user_signed_in?
 if session[:access_token]
         # authorized so request the messages from #blue)
-       loop do
+        loop do
         @messages_response = get_with_access_token("/messages.json")
 
         case @messages_response.code

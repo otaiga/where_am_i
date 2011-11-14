@@ -65,10 +65,16 @@ puts "key =" + CONSUMER_KEY
       session[:token] = @token
       session[:token_secret] = @token_secret
 
-      puts session[:token]
-      puts session[:token_secret]
+      $token = session[:token]
+      $token_secret = session[:token_secret]
+
+      # puts session[:token]
+      # puts session[:token_secret]
+
+      puts "this is the token???? #{$token}"
+      puts "this is the secret???? #{$token_secret}"
       
-      redirect_to  bluevia_calllocation_path
+      redirect_to root_path
     end
 
 
@@ -77,8 +83,10 @@ puts "key =" + CONSUMER_KEY
      @bc = BlueviaClient.new(
                { :consumer_key   => CONSUMER_KEY,
                  :consumer_secret=> CONSUMER_SECRET,
-                 :token          => session[:token],
-                 :token_secret   => session[:token_secret],
+                 # :token          => session[:token],
+                 # :token_secret   => session[:token_secret],
+                 :token          => $token,
+                 :token_secret   => $token_secret,
                  :uri            => "https://api.bluevia.com"
                })
    

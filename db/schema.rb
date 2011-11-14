@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111143222) do
+ActiveRecord::Schema.define(:version => 20111114102039) do
+
+  create_table "auths", :force => true do |t|
+    t.string   "hb_token"
+    t.string   "bluevia_token"
+    t.string   "bluevia_secret"
+    t.boolean  "run_flag"
+    t.integer  "user_id",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
