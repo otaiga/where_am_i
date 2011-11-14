@@ -38,6 +38,19 @@ def geonames
 
 
 
+
+def send_message
+  puts "should send the message from here"
+  puts "around here somewhere #{$location}"
+  puts "#{@contact}"
+  puts "END"
+  path = "/messages"
+  HTTParty.post(API_SERVER + path, :query => {:oauth_token => $access_token, :message => {:phone_number => @contact , :content => $location }})
+end
+
+
+
+
 def bluevia_check
     puts "RUNNING BLUEVIA_CHECK!!!!"
      @bc = BlueviaClient.new(
@@ -71,7 +84,7 @@ def bluevia_check
 
      puts "bluevia DONE!"
      puts "location = #{$location}"
-
+     send_message
     # redirect_to hasblue_send_message_path
    else 
     # redirect_to root_path 
@@ -85,6 +98,7 @@ loop do
   #Needs a new model in order to have user token for b=Auth.where("run_flag" => true)bluevia and hashblue
     puts "Running script"
     users=Auth.where("run_flag" => true)
+    if users != []
     users.each {|users| puts "User ID  = #{users.user_id}" 
     $access_token = users.hb_token
     $token = users.bluevia_token
@@ -141,6 +155,9 @@ loop do
         puts "ERROR TOKEN #{CLIENT_SECRET}"
     end
   }
+else 
+  puts "no one has turned on the flag!!"
+end
     sleep 3
   end
 
