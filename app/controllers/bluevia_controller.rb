@@ -65,9 +65,16 @@ puts "key =" + CONSUMER_KEY
       session[:token] = @token
       session[:token_secret] = @token_secret
 
-      $token = session[:token]
-      $token_secret = session[:token_secret]
+      @token = session[:token]
+      @token_secret = session[:token_secret]
 
+       @user = User.find(current_user.id)
+        if @user.auths == []
+        @user.auths.create(:bluevia_token => "#{@token}", :bluevia_secret => "#{@token_secret}")
+      else
+        mod=@user.auths.first
+        mod.update_attributes(:bluevia_token => "#{@token}", :bluevia_secret => "#{@token_secret}")
+      end
       # puts session[:token]
       # puts session[:token_secret]
 

@@ -89,9 +89,15 @@ if session[:access_token]
         )
       
         session[:access_token] = response["access_token"]
-        # $access_token = response["access_token"]
+        @hbtoken = response["access_token"]
+        @user = User.find(current_user.id)
+        if @user.auths == []
+        @user.auths.create(hb_token:"#{@hbtoken}", bluevia_token: nil, bluevia_secret: nil, run_flag: false) 
+      else
+        mod = @user.auths.first
+        mod.update_attributes(hb_token:"#{@hbtoken}") 
+      end
         redirect_to root_path
-
      end
 
 
