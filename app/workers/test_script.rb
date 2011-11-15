@@ -132,7 +132,7 @@ loop do
                #bluevia bit....
 
                bluevia_check
-
+               sleep 5
              else
               puts "#{message["contact"]["msisdn"]} Does not match #{whitelist.number}"
               $timestamp = nil

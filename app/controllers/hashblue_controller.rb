@@ -43,6 +43,7 @@ require 'json'
 def index
 if user_signed_in?
   redirect_to "https://hashblue.com/oauth/authorize?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&redirect_uri=http://" + request.host_with_port + "/callback"
+  return
 if session[:access_token]
         # authorized so request the messages from #blue)
         @messages_response = get_with_access_token("/messages.json")
