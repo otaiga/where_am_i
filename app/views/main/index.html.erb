@@ -39,7 +39,7 @@ Please Authenticate with BlueVia
 <%= link_to 'bluevia authentication', bluevia_auth_path %>
 <%end%>
 
-<%if mod.bluevia_token = nil && mod.hb_token = nil %>
+<%if mod == nil || mod.bluevia_token = nil && mod.hb_token = nil %>
 You need to sign in
 <%else%>
 <%mod = @user.auths.first%>
