@@ -25,13 +25,13 @@ You currently have not listed any friends
 
 
  <%mod = @user.auths.first%>
-<%if mod.hb_token == nil%>
+<%if mod == nil || mod.hb_token == nil%>
 <br>
 Please Authenticate with hashblue:
 <br>
 <%= link_to 'hashblue authentication', hashblue_path %>
 <%end%>
-<%if mod.bluevia_token == nil%>
+<%if mod == nil || mod.bluevia_token == nil%>
 <br>
 <br>
 Please Authenticate with BlueVia
