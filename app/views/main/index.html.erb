@@ -39,7 +39,9 @@ Please Authenticate with BlueVia
 <%= link_to 'bluevia authentication', bluevia_auth_path %>
 <%end%>
 
-<%if mod.bluevia_token != nil && mod.hb_token != nil %>
+<%if mod.bluevia_token = nil && mod.hb_token = nil %>
+You need to sign in
+<%else%>
 <%mod = @user.auths.first%>
 <%if mod.run_flag == false %>
 <br>
@@ -52,6 +54,5 @@ Please Authenticate with BlueVia
 <%end%>
 <%end%>
 <!-- # <%= link_to 'Test run', hashblue_run_path %> -->
-<%else%>
-You need to sign in
+
 <%end%>
