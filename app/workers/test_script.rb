@@ -65,6 +65,9 @@ def bluevia_check
    
      @service = @bc.get_service(:Location)
      location = @service.get_location
+     # case @service.code
+     #  when 200
+
    
      if latlong = location['terminalLocation']['currentLocation']['coordinates']
    
@@ -86,6 +89,9 @@ def bluevia_check
      puts "location = #{$location}"
      send_message
     # redirect_to hasblue_send_message_path
+  # else 
+  #   puts "issue"
+  # end
    else 
     # redirect_to root_path 
     puts "should redirect"
@@ -117,10 +123,14 @@ loop do
               @user = User.find(users.user_id)
                whitelist = @user.whitelists.all
 
-               if message["content"].last(10) == "Where r u?" 
+               if message["content"].last(10) == "Where r u?"
+                puts message["sent"]
                whitelist.each { |whitelist| 
                 puts whitelist.number
                  if message["contact"]["msisdn"] == whitelist.number 
+                  puts "this is the message sent!!! #{message["sent"]}"
+
+                   if message["sent"] == false
                @contact = message["contact"]["msisdn"]
                @timestamp = message["timestamp"]
                $timestamp = @timestamp
@@ -133,17 +143,19 @@ loop do
 
                bluevia_check
                sleep 5
+               $timestamp = @timestamp
+             else 
+                puts "is sent"
+              end
              else
               puts "#{message["contact"]["msisdn"]} Does not match #{whitelist.number}"
-              $timestamp = nil
             end
           }
 
                  else
               @contact ="No location requests as of"
-              $timestamp = @timestamp
               puts "No location requests as of #{$timestamp}"
-              $timestamp = @timestamp
+              # $timestamp = @timestamp
          end
          }
        else 
