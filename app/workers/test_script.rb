@@ -3,14 +3,12 @@ require 'json'
 require 'bluevia'
 include Bluevia
 
-
   CLIENT_ID = ENV['CLIENT_ID']
   CLIENT_SECRET = ENV['CLIENT_SECRET']
   CONSUMER_KEY = ENV['BLUEVIA_KEY']
   CONSUMER_SECRET = ENV['BLUEVIA_SECRET']
   AUTH_SERVER = "https://hashblue.com"
   API_SERVER = "https://api.hashblue.com"
-
 
 def geonames
        #Geo-names bit
@@ -28,7 +26,7 @@ def geonames
 
     def get_with_access_token(path)
 
-      puts "!!!!!!!!!!!!!!!!!!!!!!this is the timestamp = #{$timestamp}"
+      puts "this is the timestamp = #{$timestamp}"
       if $timestamp == nil
          $timestamp = Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
          end
@@ -108,9 +106,10 @@ loop do
     $access_token = users.hb_token
     $token = users.bluevia_token
     $token_secret = users.bluevia_secret
-    puts "Hashblue token = #{$access_token}"
-    puts "bluevia Token = #{$token}"
-    puts "bluevia Secret = #{$token_secret}"
+    $timestamp = users.last_time
+    # puts "Hashblue token = #{$access_token}"
+    # puts "bluevia Token = #{$token}"
+    # puts "bluevia Secret = #{$token_secret}"
     @messages_response = get_with_access_token("/messages.json")
 
     case @messages_response.code
@@ -134,7 +133,6 @@ loop do
                @timestamp = message["timestamp"]
                @auth = @user.auths.first
                @auth.update_attributes(:last_time => @timestamp)  #added for each user?..
-               $timestamp = @auth.last_time
                puts "This is the users TIMESTAMP #{$timestamp}"
                # session[:contact] = @contact
                # session[:timestamp] = @timestamp
@@ -161,8 +159,6 @@ loop do
               puts "No location requests as of #{new_timestamp}"
               @auth = @user.auths.first
               @auth.update_attributes(:last_time => new_timestamp)  #added for each user?..
-               $timestamp = @auth.last_time
-              puts "This is the users TIMESTAMP #{$timestamp}"
          end
          }
        else 
