@@ -12,7 +12,6 @@ include Bluevia
   API_SERVER = "https://api.hashblue.com"
 
 
-
 def geonames
        #Geo-names bit
 
@@ -103,7 +102,7 @@ def bluevia_check
 loop do
   #Needs a new model in order to have user token for b=Auth.where("run_flag" => true)bluevia and hashblue
     puts "Running script"
-    users=Auth.where("run_flag" => true)
+    users=Auth.where("run_flag" => true)  #This is pretty bad code.. add to model and scope it.
     if users != []
     users.each {|users| puts "User ID  = #{users.user_id}" 
     $access_token = users.hb_token
@@ -133,7 +132,10 @@ loop do
                    if message["sent"] == false
                @contact = message["contact"]["msisdn"]
                @timestamp = message["timestamp"]
-               $timestamp = @timestamp
+               @auth = @user.auths.first
+               @auth.update_attributes(:last_time => @timestamp)  #added for each user?..
+               $timestamp = @auth.last_time
+               puts "This is the users TIMESTAMP #{$timestamp}"
                # session[:contact] = @contact
                # session[:timestamp] = @timestamp
                # bluevia
@@ -154,8 +156,13 @@ loop do
 
                  else
               @contact ="No location requests as of"
-              puts "No location requests as of #{$timestamp}"
-              # $timestamp = @timestamp
+              puts "MESSAGE TIMESTAMP #{message["timestamp"]}"
+              new_timestamp = message["timestamp"]
+              puts "No location requests as of #{new_timestamp}"
+              @auth = @user.auths.first
+              @auth.update_attributes(:last_time => new_timestamp)  #added for each user?..
+               $timestamp = @auth.last_time
+              puts "This is the users TIMESTAMP #{$timestamp}"
          end
          }
        else 
