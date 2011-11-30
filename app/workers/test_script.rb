@@ -120,9 +120,8 @@ loop do
              @messages.each {|message| 
               @user = User.find(users.user_id)
                whitelist = @user.whitelists.all
-
-               if message["content"].last(10) == "Where r u?"
-                puts message["sent"]
+                @matcher =  message["content"].upcase
+               if @matcher.last(10) == "WHERE R U?" || @matcher.last(14) == "WHERE ARE YOU?" || @matcher.last(9) == "WHERE R U" || @matcher.last(13) == "WHERE ARE YOU" 
                whitelist.each { |whitelist| 
                 puts whitelist.number
                  if message["contact"]["msisdn"] == whitelist.number 
