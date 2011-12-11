@@ -4,7 +4,7 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "richlewis14@gmail.com"
+  config.mailer_sender = ""
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -82,8 +82,8 @@ ActionMailer::Base.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
   :domain               => "gmail.com",
-  :user_name            => "richlewis14@gmail.com",
-  :password             => "caerleon1",
+  :user_name            => "",
+  :password             => "",
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
