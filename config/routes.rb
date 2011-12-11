@@ -13,6 +13,8 @@ WhereAmI::Application.routes.draw do
 
   get "main/index"
 
+  
+
   match 'whitelist/modify', :to => 'whitelist#modify'
   match 'whitelist/create', :to => 'whitelist#create'
   match 'whitelist/index', :to => 'whitelist#index'
@@ -26,6 +28,8 @@ WhereAmI::Application.routes.draw do
   match 'users/contact', :to => "pages#contact"
   match 'users/index', :to => "main#index"
   match 'users/about_us', :to => "pages#about_us"
+
+ 
 
 
   devise_for :users
