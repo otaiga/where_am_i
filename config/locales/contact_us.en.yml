@@ -3,9 +3,9 @@
 
 en:
   contact_us:
-    contact_mailer:
+    contact_mailer: 
       contact_email:
-        sent_by_contact_form: "Sent by contact form."
+        sent_by_contact_form: "Sent From Where Am I."
         subject: "Contact Us message from %{email}"
     contacts:
       new:

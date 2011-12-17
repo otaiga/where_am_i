@@ -251,7 +251,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   width: 299px; 
   font: 100% arial; 
   border: 1px solid #E5E5DB; 
-  background: #FFF; 
+  background: #474; 
   color: #47433F;}
   
 .form_settings .submit
@@ -267,7 +267,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
 
 .form_settings textarea, .form_settings select
 { font: 100% arial; 
-  width: 299px;}
+  width: 199px;}
 
 .form_settings select
 { width: 310px;}
