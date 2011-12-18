@@ -12,12 +12,12 @@ html
 
 body
 { font: normal .80em 'trebuchet ms', arial, sans-serif;
-  background: #F0EFE2;
-  color: #777;}
+  background: #000000;
+  color: #000000;}
 
-  #signup #body
-{ font: normal .80em 'trebuchet ms', arial, sans-serif;
-  background: #F0EFE2;
+  #signup 
+{ font: normal 5.80em 'trebuchet ms', arial, sans-serif;
+  background: #FFFFFF;
   color: #777;}
 
 p
@@ -94,50 +94,64 @@ ol
 ol li
 { margin: 0 0 11px 0;}
 
-#main, #logo, #menubar, #site_content, #footer
+#main,  #menubar, #site_content, #footer
 { margin-left: auto; 
   margin-right: auto;}
 
 #header
-{ background: #025587;
+{ background: #1A1A1A;
   height: 240px;}
 
 #logo
 { width: 825px;
-  position: relative;
+  position: left;
   height: 168px;
-  background: #025587 url(logo.png) no-repeat;}
+  background: #1A1A1A url(greenradar.png) no-repeat;}
 
-#logo #logo_text 
+
+
+
+#logo_text 
 { position: absolute; 
   top: 20px;
-  left: 0;}
+  left: 0;
+  right: 10px;
+   background: url(mainlogo.png) no-repeat;
+    background-size: 40%;}
 
-#logo h1, #logo h2
-{ font: normal 300% 'century gothic', arial, sans-serif;
-  border-bottom: 0;
+ #logo h2
+{ position: absolute;
+  top: 10px;
+  left: 0;
+  right: 10px;
+   background: url(h2mainlogo.png) no-repeat;
+   background-size: 30%;
   text-transform: none;
   margin: 0;}
 
 #logo_text h1, #logo_text h1 a, #logo_text h1 a:hover 
 { padding: 22px 0 0 0;
-  color: #FFF;
+  color: #008B45;
   letter-spacing: 0.1em;
   text-decoration: none;}
 
 #logo_text h1 a .logo_colour
-{ color: #80FFFF;}
+{ color: #008B45;}
 
 #logo_text h2
-{ font-size: 100%;
-  padding: 4px 0 0 0;
-  color: #DDD;}
+{ font-size: 50%;
+  top: 40px;
+  left: 0;
+  right: 10px;
+  
+  color: #E5E5E5;}
 
 #menubar
-{ width: 877px;
+{ width: 100%px;
   height: 72px;
-  padding: 0;
-  background: #29415D url(menu.png) repeat-x;} 
+  padding: 10;
+  color:#FFFFFF;
+  }
 
 ul#menu, ul#menu li
 { float: left;
@@ -149,27 +163,30 @@ ul#menu li
 
 ul#menu li a
 { letter-spacing: 0.1em;
-  font: normal 100% 'lucida sans unicode', arial, sans-serif;
+  font-size: 150%;
+  font-family: 'Passion One', serif; font-weight: 700; 
   display: block; 
   float: left; 
   height: 37px;
-  padding: 29px 26px 6px 26px;
+  padding: 29px 150px 6px 26px;
   text-align: center;
-  color: #FFF;
+  color: #FFFFFF;
   text-transform: uppercase;
   text-decoration: none;
   background: transparent;} 
 
-ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
+ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected 
 { color: #FFF;
-  background: #1C2C3E url(menu_select.png) repeat-x;}
+  background: #ADFF2F;} 
+
+  a:hover {background: #BEBEBE;}
 
 #site_content
-{ width: 837px;
+{ width: 100%px;
   overflow: hidden;
   margin: 0 auto 0 auto;
   padding: 20px 24px 20px 37px;
-  background: #FFF url(content.png) repeat-y;} 
+  background: #FFFFFF} 
 
 .sidebar
 { float: right;
@@ -194,10 +211,11 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
 { color: #444;
   text-decoration: none;} 
 
-#content
+#content 
 { text-align: left;
-  width: 595px;
-  padding: 0;}
+  width: 650px;
+  padding: 0;
+}
 
 #content ul
 { margin: 2px 0 22px 0px;}
@@ -210,13 +228,12 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover
   line-height: 1.5em;}
 
 #footer
-{ width: 878px;
-  font: normal 100% 'lucida sans unicode', arial, sans-serif;
+{ width: 100%px;
+  font-family: 'Passion One', serif; font-weight: 600;
   height: 33px;
   padding: 24px 0 5px 0;
   text-align: center; 
-  background: #29425E url(footer.png) repeat-x;
-  color: #FFF;
+  color: #FFFFFF;
   text-transform: uppercase;
   letter-spacing: 0.1em;}
 
