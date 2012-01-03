@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111129125602) do
+ActiveRecord::Schema.define(:version => 20120103135405) do
 
   create_table "auths", :force => true do |t|
     t.string   "hb_token"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20111129125602) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "last_time"
+    t.string   "hb_refresh"
   end
 
   create_table "delayed_jobs", :force => true do |t|
