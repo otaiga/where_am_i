@@ -36,6 +36,24 @@ def geonames
 
 
 
+    def get_refresh_token
+      @user = User.find($user)
+      puts "token? : #{@user.auths.first.hb_refresh}"
+      @refresh_token= @user.auths.first.hb_refresh
+
+      puts "this is the old refresh token : #{@refresh_token}"
+
+      response = HTTParty.post("https://hashblue.com/oauth/access_token?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&grant_type=refresh_token&refresh_token=#{@refresh_token}")
+     
+     puts response
+      @hbtoken = response["access_token"]
+      @hbrefreshtoken =  response["refresh_token"]
+      mod = @user.auths.first
+      mod.update_attributes(hb_token:"#{@hbtoken}", hb_refresh:"#{@hbrefreshtoken}") 
+      puts "Updated attributes #{@hbtoken} and #{@hbrefreshtoken}"
+    end
+
+
 def send_message
   puts "should send the message from here"
   puts "around here somewhere #{$location}"
@@ -94,6 +112,7 @@ def bluevia_check
     puts "should redirect"
   end
    end
+
 
 
 
@@ -168,6 +187,12 @@ loop do
 		else
         # No Access token therefore authorize this application and request an access token
         puts "ERROR TOKEN #{CLIENT_SECRET}"
+        # @user = User.find(users.user_id)
+        # @user.auths.first.update_attributes(:run_flag => false)
+        #Need to refresh token.
+        $user = users.user_id
+        get_refresh_token
+
     end
   }
 else 

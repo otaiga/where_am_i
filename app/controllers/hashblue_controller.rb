@@ -92,12 +92,14 @@ if session[:access_token]
       
         session[:access_token] = response["access_token"]
         @hbtoken = response["access_token"]
+        @hbrefreshtoken =  response["refresh_token"]
+
         @user = User.find(current_user.id)
         if @user.auths == []
-        @user.auths.create(hb_token:"#{@hbtoken}", bluevia_token: nil, bluevia_secret: nil, run_flag: false) 
+        @user.auths.create(hb_token:"#{@hbtoken}", hb_refresh:"#{@hbrefreshtoken}", bluevia_token: nil, bluevia_secret: nil, run_flag: false) 
       else
         mod = @user.auths.first
-        mod.update_attributes(hb_token:"#{@hbtoken}") 
+        mod.update_attributes(hb_token:"#{@hbtoken}", hb_refresh:"#{@hbrefreshtoken}") 
       end
         redirect_to root_path
      end
