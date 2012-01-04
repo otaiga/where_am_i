@@ -1,6 +1,5 @@
 
 <% if user_signed_in? %>
-<div id="main">
 
  <%mod = @user.auths.first%>
 <%if mod == nil || mod.hb_token == nil || mod.bluevia_token == nil%>
@@ -16,6 +15,7 @@
 <br>
 <br>
 <%= link_to 'Bluevia Authentication', bluevia_auth_path, :id=>"myButton" %>
+
 <%end%>
 
 
@@ -27,8 +27,11 @@
 <%else%>
 
 <% if @whitelist == [] %>
+
 <h2 align="center"> You currently have not listed any friends</h2>
+
 <% else %>
+
 <h2 align="center"> Your Current Friend List</h2>
 <% @whitelist.each do |white| %>
 <ul>
@@ -38,9 +41,8 @@
     <br><%= link_to('Edit Friend', whitelist_edit_path(white.id), :id => "myButtonsmall") %> <%= link_to('Delete Friend', whitelist_destroy_path(white.id), :id => "myButtonsmall")%> 
 </div>
   </ul>
-
-
 <% end %>
+
 <% end %>
 
 
@@ -57,6 +59,7 @@
   <% end %>
 </div>
 
+
 <%mod = @user.auths.first%>
 <%if mod.run_flag == false %>
 <br>
@@ -69,9 +72,11 @@
 <br>
 <h2 align="center">Your location details are currently on, please click button to deactivate:</h2>
 <center><%= link_to 'Turn Off', main_loop_off_path, :id => "myButton" %>
+
 <%end%>
 <%end%>
 <!-- # <%= link_to 'Test run', hashblue_run_path %> -->
 
 <%end%>
-</div>
+
+
