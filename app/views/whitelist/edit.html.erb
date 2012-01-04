@@ -1,11 +1,15 @@
-
+<div id="edit">
+<h2 align="center">Edit Friend Details</h2>
+<div id="form">
 <%= form_for @whitelist, :as => :post, :url => whitelist_modify_path do |f| %>
-	<%= f.label :friend  %>
-  <%= f.text_field :friend %>
-	<%= f.label :number %>
-  <%= f.text_field :number %>
+	<%= f.label :friend  %><br>
+  <%= f.text_field :friend %><br>
+	<%= f.label :number %><br>
+  <%= f.text_field :number %><br>
  <%= f.hidden_field :user_id, :value => current_user.id %>
- <%= f.hidden_field :id %>
+ <%= f.hidden_field :id %><br>
   <%= f.submit :Submit %>
   
 <% end %>
+</div>
+</div>

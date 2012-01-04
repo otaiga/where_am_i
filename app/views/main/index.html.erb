@@ -1,58 +1,77 @@
 
 <% if user_signed_in? %>
+<div id="main">
+
+ <%mod = @user.auths.first%>
+<%if mod == nil || mod.hb_token == nil || mod.bluevia_token == nil%>
+<h2>Hi, thanks for signing up to WhereAmI.</h2>
+<h3>In order to use this service you will need to register your O2 mobile with Hashblue and BlueVia.</h3>
+<%end%>
+<%if mod == nil || mod.hb_token == nil %>
+<br>
+<%= link_to 'Hashblue Authentication', hashblue_path, :id=>"myButton" %>
+<%end%>
+
+<%if mod == nil || mod.bluevia_token == nil %>
+<br>
+<br>
+<%= link_to 'Bluevia Authentication', bluevia_auth_path, :id=>"myButton" %>
+<%end%>
+
+
+
+
+<%if mod == nil || mod.bluevia_token == nil || mod.hb_token == nil %>
+
+
+<%else%>
+
 <% if @whitelist == [] %>
-You currently have not listed any friends
+<h2 align="center"> You currently have not listed any friends</h2>
 <% else %>
-<h2> Your Current Friend List</h2>
+<h2 align="center"> Your Current Friend List</h2>
 <% @whitelist.each do |white| %>
 <ul>
-		<li><%= white.friend %> - <%= white.number %>, <%= link_to('edit friend', whitelist_edit_path(white.id)) %>, <%= link_to('delete friend', whitelist_destroy_path(white.id))%> </li>
-	
-	</ul>
+  <div id="wrapper">
+    <%= white.friend %>
+    <p><%= white.number %>
+    <br><%= link_to('Edit Friend', whitelist_edit_path(white.id), :id => "myButtonsmall") %> <%= link_to('Delete Friend', whitelist_destroy_path(white.id), :id => "myButtonsmall")%> 
+</div>
+  </ul>
 
 
 <% end %>
 <% end %>
-<h2>Create a friend</h2>
 
+
+
+<h2 align="center">Create a friend</h2>
+
+<div id="wrapper">
 <%= form_tag("/whitelist/create", :method => "POST") do %>
   Friend<br>
-  <%= text_field_tag("friend") %><br>
-  Number<br>
+  <%= text_field_tag("friend") %><br><br>
+  Number (e.g. 44123456789) <br>
   <%= text_field_tag("number") %><br><br>
   <%= submit_tag("create")%>
   <% end %>
+</div>
 
-
- <%mod = @user.auths.first%>
-<%if mod == nil || mod.hb_token == nil%>
-<br>
-Please Authenticate with hashblue:
-<br>
-<%= link_to 'hashblue authentication', hashblue_path %>
-<%end%>
-<%if mod == nil || mod.bluevia_token == nil%>
-<br>
-<br>
-Please Authenticate with BlueVia
-<br>
-<%= link_to 'bluevia authentication', bluevia_auth_path %>
-<%end%>
-
-<%if mod == nil || mod.bluevia_token = nil && mod.hb_token = nil %>
-You need to sign in
-<%else%>
 <%mod = @user.auths.first%>
 <%if mod.run_flag == false %>
 <br>
 <br>
-<%= link_to 'Turn on', main_loop_on_path %>
+<h2 align="center">Your location details are currently off, please click button to activate:</h2>
+
+<center><%= link_to 'Turn On', main_loop_on_path, :id => "myButton" %>
 <%else%>
 <br>
 <br>
-<%= link_to 'Turn off', main_loop_off_path %>
+<h2 align="center">Your location details are currently on, please click button to deactivate:</h2>
+<center><%= link_to 'Turn Off', main_loop_off_path, :id => "myButton" %>
 <%end%>
 <%end%>
 <!-- # <%= link_to 'Test run', hashblue_run_path %> -->
 
 <%end%>
+</div>
