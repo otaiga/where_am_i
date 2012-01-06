@@ -46,11 +46,13 @@ def geonames
       response = HTTParty.post("https://hashblue.com/oauth/access_token?client_id=#{CLIENT_ID}&client_secret=#{CLIENT_SECRET}&grant_type=refresh_token&refresh_token=#{@refresh_token}")
      
      puts response
+      unless response["access_token"] == nil || response["refresh_token"] == nil 
       @hbtoken = response["access_token"]
       @hbrefreshtoken =  response["refresh_token"]
       mod = @user.auths.first
       mod.update_attributes(hb_token:"#{@hbtoken}", hb_refresh:"#{@hbrefreshtoken}") 
       puts "Updated attributes #{@hbtoken} and #{@hbrefreshtoken}"
+    end
     end
 
 
@@ -59,8 +61,11 @@ def send_message
   puts "around here somewhere #{$location}"
   puts "#{@contact}"
   puts "END"
-  path = "/messages"
-  HTTParty.post(API_SERVER + path, :query => {:oauth_token => $access_token, :message => {:phone_number => @contact , :content => $location }})
+  path = "/messages.json"
+  response = HTTParty.post(API_SERVER + path, :query => {:oauth_token => $access_token, :message => {:phone_number => @contact , :content => $location }})
+  message_to_delete = response["message"]["uri"]
+  delresp = HTTParty.delete(message_to_delete, :query => {:oauth_token => $access_token})
+  puts delresp
 end
 
 
