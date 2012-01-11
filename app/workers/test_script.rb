@@ -206,6 +206,7 @@ end
   end
           rescue
       p "resuced!"
+      bluevia_check
       runner
 end
 
