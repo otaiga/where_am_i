@@ -13,7 +13,7 @@
 
 <%if mod != nil && mod.hb_token == "" %>
 <h4>Oops, there seems to have been a problem with Hashblue authentication, please re-authenticate.</h4>
-<%= link_to 'Hashblue Authentication', hashblue_auth_path, :id=>"myButton" %>
+<%= link_to 'Hashblue Authentication', hashblue_path, :id=>"myButton" %>
 <%end%>
 
 <%if mod != nil && mod.bluevia_token == "" %>

@@ -120,10 +120,9 @@ def bluevia_check
 
 
 
-
+def runner
 loop do
-  #Needs a new model in order to have user token for b=Auth.where("run_flag" => true)bluevia and hashblue
-    puts "Running script"
+    puts "Running loop"
     users=Auth.where("run_flag" => true)  #This is pretty bad code.. add to model and scope it.
     if users != []
     users.each {|users| puts "User ID  = #{users.user_id}" 
@@ -205,4 +204,16 @@ else
 end
     sleep 3
   end
+          rescue
+      p "resuced!"
+      runner
+end
+
+
+
+begin
+puts "Running script"
+runner
+end
+
 
