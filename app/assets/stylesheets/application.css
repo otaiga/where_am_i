@@ -11,6 +11,16 @@ margin-right: auto;
 text-align: center;
 }
 
+#wrapper2 {
+width: 40%;
+float:right;
+margin-top: 1%;
+margin-bottom: 1%;
+margin-left: 1%;
+margin-right: 1%;
+text-align: center;
+}
+
 #nav {
 width: 10%;
 float: right;
