@@ -1,7 +1,8 @@
 class WhitelistController < ApplicationController
 	def index
   if user_signed_in?
-		@whitelist = Whitelist.all
+		@whitelist = User.find(current_user.id).whitelists
+    redirect_to root_path
   else
     redirect_to new_user_session_path
   end
