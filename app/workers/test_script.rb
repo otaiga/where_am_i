@@ -116,6 +116,9 @@ def bluevia_check
     # redirect_to root_path 
     puts "should redirect"
   end
+            rescue
+      p "resuced!"
+      bluevia_check
    end
 
 
@@ -129,7 +132,7 @@ loop do
     $access_token = users.hb_token
     $token = users.bluevia_token
     $token_secret = users.bluevia_secret
-    $timestamp = users.last_time
+    $timestamp = users.last_time #if timestamp = nil  update with : Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
     # puts "Hashblue token = #{$access_token}"
     # puts "bluevia Token = #{$token}"
     # puts "bluevia Secret = #{$token_secret}"
@@ -175,7 +178,7 @@ loop do
           }
 
                  else
-              @contact ="No location requests as of"
+
               puts "MESSAGE TIMESTAMP #{message["timestamp"]}"
               new_timestamp = message["timestamp"]
               puts "No location requests as of #{new_timestamp}"
@@ -185,7 +188,6 @@ loop do
          }
        else 
         puts "no new messages"
-        @contact ="No location requests as of"
       end
 
 		else
