@@ -28,7 +28,7 @@ def geonames
 
       puts "this is the timestamp = #{$timestamp}"
       if $timestamp == nil
-         $timestamp = Time.now.strftime("%Y-%m-%dT%H:%M:%SZ")
+         $timestamp = (Time.now - 30.minutes).strftime("%Y-%m-%dT%H:%M:%SZ")
          end
          HTTParty.get(API_SERVER + path, :query => {:oauth_token => $access_token, :since => $timestamp })
       end
